@@ -207,7 +207,7 @@ class CoreDumpTest extends TestCase
     }
 
     /**
-     * @var array My original $_SERVER array.
+     * @var array My original server array.
      */
     private $originalServerArray;
 }
