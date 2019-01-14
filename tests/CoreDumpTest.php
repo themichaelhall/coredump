@@ -128,7 +128,7 @@ class CoreDumpTest extends TestCase
         $fileContent = file_get_contents($filePath);
         unlink($filePath);
 
-        self::assertRegExp('!^' . getcwd() . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
+        self::assertRegExp('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, getcwd()) . '\\' . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
         self::assertContains('[Method] => testSaveWithDefaultValue', $fileContent);
     }
 
@@ -143,7 +143,7 @@ class CoreDumpTest extends TestCase
         $fileContent = file_get_contents($filePath);
         unlink($filePath);
 
-        self::assertRegExp('!^' . sys_get_temp_dir() . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
+        self::assertRegExp('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, sys_get_temp_dir()) . '\\' . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
         self::assertContains('[Method] => testSaveWithDirectoryPath', $fileContent);
     }
 
@@ -173,7 +173,7 @@ class CoreDumpTest extends TestCase
         $fileContent = file_get_contents($filePath);
         unlink($filePath);
 
-        self::assertRegExp('!^' . sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'core\.[a-z0-9]{40}\.dump$!', $filePath);
+        self::assertRegExp('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, sys_get_temp_dir()) . '\\' . DIRECTORY_SEPARATOR . 'core\.[a-z0-9]{40}\.dump$!', $filePath);
         self::assertContains('[Method] => testSaveWithFilePathWithReplacementCharacter', $fileContent);
     }
 
