@@ -1,0 +1,33 @@
+{
+  "name": "michaelhall/coredump",
+  "description": "Dump a core file with debug information",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "core",
+    "dump",
+    "php"
+  ],
+  "authors": [
+    {
+      "name": "Michael Hall",
+      "homepage": "https://michaelhall.se/"
+    }
+  ],
+  "require": {
+    "php": ">=7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MichaelHall\\CoreDump\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MichaelHall\\CoreDump\\Tests\\": "tests"
+    }
+  }
+}
