@@ -131,10 +131,10 @@ class CoreDump
         if ($content instanceof \Throwable) {
             $result .= self::formatThrowable($content);
         } else {
-            $result .= print_r($content, true);
+            $result .= trim(print_r($content, true));
         }
 
-        return $result;
+        return $result . PHP_EOL;
     }
 
     /**
@@ -152,7 +152,7 @@ class CoreDump
             'Code     : ' . $throwable->getCode() . PHP_EOL .
             'Location : ' . $throwable->getFile() . '(' . $throwable->getLine() . ')' . PHP_EOL .
             PHP_EOL .
-            $throwable->getTraceAsString() . PHP_EOL;
+            $throwable->getTraceAsString();
     }
 
     /**
