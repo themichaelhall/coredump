@@ -1,9 +1,11 @@
 <?php
+
 /**
  * This file is a part of the coredump package.
  *
  * Read more at https://github.com/themichaelhall/coredump
  */
+
 declare(strict_types=1);
 
 namespace MichaelHall\CoreDump;
