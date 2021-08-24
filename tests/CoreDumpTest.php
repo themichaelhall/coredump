@@ -38,24 +38,24 @@ class CoreDumpTest extends TestCase
 
         $coreDump = new CoreDump();
 
-        self::assertContains('==============================' . PHP_EOL . ' $_SERVER' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[SERVER_TEST_VAR] => Foo', $coreDump->__toString());
-        self::assertContains('==============================' . PHP_EOL . ' $_GET' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[GET_TEST_VAR] => Bar', $coreDump->__toString());
-        self::assertContains('==============================' . PHP_EOL . ' $_POST' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[POST_TEST_VAR] => Baz', $coreDump->__toString());
-        self::assertContains('==============================' . PHP_EOL . ' $_FILES' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[FILES_TEST_VAR] => FooBar', $coreDump->__toString());
-        self::assertContains('==============================' . PHP_EOL . ' $_COOKIE' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[COOKIE_TEST_VAR] => FooBaz', $coreDump->__toString());
-        self::assertContains('==============================' . PHP_EOL . ' $_SESSION' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[SESSION_TEST_VAR] => BarFoo', $coreDump->__toString());
-        self::assertContains('==============================' . PHP_EOL . ' $_REQUEST' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[REQUEST_TEST_VAR] => BarBaz', $coreDump->__toString());
-        self::assertContains('==============================' . PHP_EOL . ' $_ENV' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[ENV_TEST_VAR] => FooBarBaz', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_SERVER' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[SERVER_TEST_VAR] => Foo', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_GET' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[GET_TEST_VAR] => Bar', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_POST' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[POST_TEST_VAR] => Baz', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_FILES' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[FILES_TEST_VAR] => FooBar', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_COOKIE' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[COOKIE_TEST_VAR] => FooBaz', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_SESSION' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[SESSION_TEST_VAR] => BarFoo', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_REQUEST' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[REQUEST_TEST_VAR] => BarBaz', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_ENV' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[ENV_TEST_VAR] => FooBarBaz', $coreDump->__toString());
 
-        self::assertNotContains('Exception', $coreDump->__toString());
+        self::assertStringNotContainsString('Exception', $coreDump->__toString());
     }
 
     /**
@@ -68,14 +68,14 @@ class CoreDumpTest extends TestCase
         $exception = new \InvalidArgumentException('This is an exception', 42);
         $coreDump = new CoreDump($exception);
 
-        self::assertContains('==============================' . PHP_EOL . ' Exception' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('Class    : InvalidArgumentException', $coreDump->__toString());
-        self::assertContains('Message  : This is an exception', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' Exception' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('Class    : InvalidArgumentException', $coreDump->__toString());
+        self::assertStringContainsString('Message  : This is an exception', $coreDump->__toString());
 
-        self::assertContains('==============================' . PHP_EOL . ' $_GET' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[GET_TEST_VAR] => Foo', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_GET' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[GET_TEST_VAR] => Foo', $coreDump->__toString());
 
-        self::assertNotContains('$_POST', $coreDump->__toString());
+        self::assertStringNotContainsString('$_POST', $coreDump->__toString());
     }
 
     /**
@@ -86,11 +86,11 @@ class CoreDumpTest extends TestCase
         $error = new \TypeError('This is an error', 0);
         $coreDump = new CoreDump($error);
 
-        self::assertContains('==============================' . PHP_EOL . ' Error' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('Class    : TypeError', $coreDump->__toString());
-        self::assertContains('Message  : This is an error', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' Error' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('Class    : TypeError', $coreDump->__toString());
+        self::assertStringContainsString('Message  : This is an error', $coreDump->__toString());
 
-        self::assertNotContains('$_GET', $coreDump->__toString());
+        self::assertStringNotContainsString('$_GET', $coreDump->__toString());
     }
 
     /**
@@ -104,17 +104,17 @@ class CoreDumpTest extends TestCase
         $coreDump = new CoreDump($exception);
         $coreDump->add('My Array', ['Bar' => 'Baz']);
 
-        self::assertContains('==============================' . PHP_EOL . ' Exception' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('Class    : InvalidArgumentException', $coreDump->__toString());
-        self::assertContains('Message  : This is an exception', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' Exception' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('Class    : InvalidArgumentException', $coreDump->__toString());
+        self::assertStringContainsString('Message  : This is an exception', $coreDump->__toString());
 
-        self::assertContains('==============================' . PHP_EOL . ' My Array' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[Bar] => Baz', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' My Array' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[Bar] => Baz', $coreDump->__toString());
 
-        self::assertContains('==============================' . PHP_EOL . ' $_GET' . PHP_EOL . '==============================', $coreDump->__toString());
-        self::assertContains('[GET_TEST_VAR] => Foo', $coreDump->__toString());
+        self::assertStringContainsString('==============================' . PHP_EOL . ' $_GET' . PHP_EOL . '==============================', $coreDump->__toString());
+        self::assertStringContainsString('[GET_TEST_VAR] => Foo', $coreDump->__toString());
 
-        self::assertNotContains('$_POST', $coreDump->__toString());
+        self::assertStringNotContainsString('$_POST', $coreDump->__toString());
     }
 
     /**
@@ -128,8 +128,8 @@ class CoreDumpTest extends TestCase
         $fileContent = file_get_contents($filePath);
         unlink($filePath);
 
-        self::assertRegExp('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, getcwd()) . '\\' . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
-        self::assertContains('[Method] => testSaveWithDefaultValue', $fileContent);
+        self::assertMatchesRegularExpression('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, getcwd()) . '\\' . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
+        self::assertStringContainsString('[Method] => testSaveWithDefaultValue', $fileContent);
     }
 
     /**
@@ -143,8 +143,8 @@ class CoreDumpTest extends TestCase
         $fileContent = file_get_contents($filePath);
         unlink($filePath);
 
-        self::assertRegExp('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, sys_get_temp_dir()) . '\\' . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
-        self::assertContains('[Method] => testSaveWithDirectoryPath', $fileContent);
+        self::assertMatchesRegularExpression('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, sys_get_temp_dir()) . '\\' . DIRECTORY_SEPARATOR . '[a-z0-9]{40}\.coredump$!', $filePath);
+        self::assertStringContainsString('[Method] => testSaveWithDirectoryPath', $fileContent);
     }
 
     /**
@@ -159,7 +159,7 @@ class CoreDumpTest extends TestCase
         unlink($filePath);
 
         self::assertSame(sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'core.dump', $filePath);
-        self::assertContains('[Method] => testSaveWithFilePath', $fileContent);
+        self::assertStringContainsString('[Method] => testSaveWithFilePath', $fileContent);
     }
 
     /**
@@ -173,14 +173,14 @@ class CoreDumpTest extends TestCase
         $fileContent = file_get_contents($filePath);
         unlink($filePath);
 
-        self::assertRegExp('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, sys_get_temp_dir()) . '\\' . DIRECTORY_SEPARATOR . 'core\.[a-z0-9]{40}\.dump$!', $filePath);
-        self::assertContains('[Method] => testSaveWithFilePathWithReplacementCharacter', $fileContent);
+        self::assertMatchesRegularExpression('!^' . str_replace(DIRECTORY_SEPARATOR, '\\' . DIRECTORY_SEPARATOR, sys_get_temp_dir()) . '\\' . DIRECTORY_SEPARATOR . 'core\.[a-z0-9]{40}\.dump$!', $filePath);
+        self::assertStringContainsString('[Method] => testSaveWithFilePathWithReplacementCharacter', $fileContent);
     }
 
     /**
      * Set up.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -199,7 +199,7 @@ class CoreDumpTest extends TestCase
     /**
      * Tear down.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 

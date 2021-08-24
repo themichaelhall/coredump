@@ -12,7 +12,7 @@ Create a core dump file with debug information.
 
 ## Requirements
 
-- PHP >= 7.1
+- PHP >= 7.3
 
 ## Install with composer
 
