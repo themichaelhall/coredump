@@ -1,8 +1,6 @@
 # CoreDump
 
-[![Build Status](https://travis-ci.org/themichaelhall/coredump.svg?branch=master)](https://travis-ci.org/themichaelhall/coredump)
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/themichaelhall/coredump?branch=master&svg=true)](https://ci.appveyor.com/project/themichaelhall/coredump/branch/master)
-[![codecov.io](https://codecov.io/gh/themichaelhall/coredump/coverage.svg?branch=master)](https://codecov.io/gh/themichaelhall/coredump?branch=master)
+[![Tests](https://github.com/themichaelhall/coredump/workflows/tests/badge.svg?branch=master)](https://github.com/themichaelhall/coredump/actions)
 [![StyleCI](https://styleci.io/repos/165721365/shield?style=flat&branch=master)](https://styleci.io/repos/165721365)
 [![License](https://poser.pugx.org/michaelhall/coredump/license)](https://packagist.org/packages/michaelhall/coredump)
 [![Latest Stable Version](https://poser.pugx.org/michaelhall/coredump/v/stable)](https://packagist.org/packages/michaelhall/coredump)
