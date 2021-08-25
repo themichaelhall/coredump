@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace MichaelHall\CoreDump\Tests;
 
+use InvalidArgumentException;
 use MichaelHall\CoreDump\CoreDump;
 use PHPUnit\Framework\TestCase;
+use TypeError;
 
 /**
  * Test CoreDump class.
@@ -65,7 +67,7 @@ class CoreDumpTest extends TestCase
     {
         $_GET['GET_TEST_VAR'] = 'Foo';
 
-        $exception = new \InvalidArgumentException('This is an exception', 42);
+        $exception = new InvalidArgumentException('This is an exception', 42);
         $coreDump = new CoreDump($exception);
 
         self::assertStringContainsString('==============================' . PHP_EOL . ' Exception' . PHP_EOL . '==============================', $coreDump->__toString());
@@ -83,7 +85,7 @@ class CoreDumpTest extends TestCase
      */
     public function testWithError()
     {
-        $error = new \TypeError('This is an error', 0);
+        $error = new TypeError('This is an error', 0);
         $coreDump = new CoreDump($error);
 
         self::assertStringContainsString('==============================' . PHP_EOL . ' Error' . PHP_EOL . '==============================', $coreDump->__toString());
@@ -100,7 +102,7 @@ class CoreDumpTest extends TestCase
     {
         $_GET['GET_TEST_VAR'] = 'Foo';
 
-        $exception = new \InvalidArgumentException('This is an exception', 42);
+        $exception = new InvalidArgumentException('This is an exception', 42);
         $coreDump = new CoreDump($exception);
         $coreDump->add('My Array', ['Bar' => 'Baz']);
 

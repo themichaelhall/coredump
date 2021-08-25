@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace MichaelHall\CoreDump;
 
+use Exception;
+use Throwable;
+
 /**
  * Class CoreDump.
  *
@@ -22,9 +25,9 @@ class CoreDump
      *
      * @since 1.0.0
      *
-     * @param \Throwable|null $throwable The throwable or null if no throwable.
+     * @param Throwable|null $throwable The throwable or null if no throwable.
      */
-    public function __construct(?\Throwable $throwable = null)
+    public function __construct(?Throwable $throwable = null)
     {
         $this->throwable = $throwable;
         $this->content = [];
@@ -89,7 +92,7 @@ class CoreDump
         $result = [];
 
         if ($this->throwable !== null) {
-            $result[] = self::contentToString($this->throwable instanceof \Exception ? 'Exception' : 'Error', $this->throwable);
+            $result[] = self::contentToString($this->throwable instanceof Exception ? 'Exception' : 'Error', $this->throwable);
         }
 
         foreach ($this->content as $name => $content) {
@@ -130,7 +133,7 @@ class CoreDump
     {
         $result = str_repeat('=', 30) . PHP_EOL . ' ' . $name . PHP_EOL . str_repeat('=', 30) . PHP_EOL . PHP_EOL;
 
-        if ($content instanceof \Throwable) {
+        if ($content instanceof Throwable) {
             $result .= self::formatThrowable($content);
         } else {
             $result .= trim(print_r($content, true));
@@ -142,11 +145,11 @@ class CoreDump
     /**
      * Formats a throwable.
      *
-     * @param \Throwable $throwable The throwable.
+     * @param Throwable $throwable The throwable.
      *
      * @return string The result.
      */
-    private static function formatThrowable(\Throwable $throwable): string
+    private static function formatThrowable(Throwable $throwable): string
     {
         return
             'Class    : ' . get_class($throwable) . PHP_EOL .
@@ -158,7 +161,7 @@ class CoreDump
     }
 
     /**
-     * @var \Throwable|null My throwable.
+     * @var Throwable|null My throwable.
      */
     private $throwable;
 
