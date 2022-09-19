@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace MichaelHall\CoreDump;
 
 use Exception;
+use Stringable;
 use Throwable;
 
 /**
@@ -18,7 +19,7 @@ use Throwable;
  *
  * @since 1.0.0
  */
-class CoreDump
+class CoreDump implements Stringable
 {
     /**
      * Constructs a CoreDump object.
