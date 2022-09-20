@@ -52,7 +52,7 @@ class CoreDump implements Stringable
      * @param string $name    The name.
      * @param mixed  $content The content.
      */
-    public function add(string $name, $content): void
+    public function add(string $name, mixed $content): void
     {
         $this->content[$name] = $content;
     }
@@ -110,8 +110,8 @@ class CoreDump implements Stringable
     /**
      * Adds a super global array.
      *
-     * @param string     $name        The name of the super global array.
-     * @param array|null $globalArray The global array or null if not set.
+     * @param string                    $name        The name of the super global array.
+     * @param array<string, mixed>|null $globalArray The global array or null if not set.
      */
     private function addSuperGlobal(string $name, ?array $globalArray = null): void
     {
@@ -130,7 +130,7 @@ class CoreDump implements Stringable
      *
      * @return string The content as a readable string.
      */
-    private static function contentToString(string $name, $content): string
+    private static function contentToString(string $name, mixed $content): string
     {
         $result = str_repeat('=', 30) . PHP_EOL . ' ' . $name . PHP_EOL . str_repeat('=', 30) . PHP_EOL . PHP_EOL;
 
@@ -162,17 +162,17 @@ class CoreDump implements Stringable
     }
 
     /**
-     * @var Throwable|null My throwable.
+     * @var Throwable|null The throwable.
      */
-    private $throwable;
+    private ?Throwable $throwable;
 
     /**
-     * @var array My content.
+     * @var array<string, mixed> The content.
      */
-    private $content;
+    private array $content;
 
     /**
-     * @var array My super globals.
+     * @var array<string, array<string, mixed>|null> The super globals.
      */
-    private $superGlobals;
+    private array $superGlobals;
 }
