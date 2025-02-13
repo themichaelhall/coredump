@@ -1,7 +1,6 @@
 # CoreDump
 
-[![Tests](https://github.com/themichaelhall/coredump/workflows/tests/badge.svg?branch=master)](https://github.com/themichaelhall/coredump/actions)
-[![StyleCI](https://styleci.io/repos/165721365/shield?style=flat&branch=master)](https://styleci.io/repos/165721365)
+[![Tests](https://github.com/themichaelhall/coredump/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/themichaelhall/coredump/actions)
 [![License](https://poser.pugx.org/michaelhall/coredump/license)](https://packagist.org/packages/michaelhall/coredump)
 [![Latest Stable Version](https://poser.pugx.org/michaelhall/coredump/v/stable)](https://packagist.org/packages/michaelhall/coredump)
 [![Total Downloads](https://poser.pugx.org/michaelhall/coredump/downloads)](https://packagist.org/packages/michaelhall/coredump)
